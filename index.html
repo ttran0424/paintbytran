@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Paint</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="paint-shell" aria-label="Simple Paint app">
+      <header class="titlebar">
+        <div class="window-dots" aria-hidden="true">
+          <span class="close-dot"></span>
+          <span class="minimize-dot"></span>
+          <span class="zoom-dot"></span>
+        </div>
+        <h1>Simple Paint</h1>
+        <div class="title-actions">
+          <button class="tool-button" id="undoBtn" type="button" title="Undo" aria-label="Undo">
+            <span aria-hidden="true">↶</span>
+          </button>
+          <button class="tool-button" id="redoBtn" type="button" title="Redo" aria-label="Redo">
+            <span aria-hidden="true">↷</span>
+          </button>
+          <button class="command-button" id="saveBtn" type="button">Save PNG</button>
+        </div>
+      </header>
+
+      <section class="ribbon" aria-label="Paint tools">
+        <div class="tool-group">
+          <p>Tools</p>
+          <div class="segmented" role="radiogroup" aria-label="Drawing tool">
+            <button class="tool-button active" data-tool="pencil" type="button" title="Pencil" aria-pressed="true">✎</button>
+            <button class="tool-button" data-tool="brush" type="button" title="Brush" aria-pressed="false">●</button>
+            <button class="tool-button" data-tool="eraser" type="button" title="Eraser" aria-pressed="false">⌫</button>
+            <button class="tool-button" data-tool="line" type="button" title="Line" aria-pressed="false">╱</button>
+            <button class="tool-button" data-tool="rect" type="button" title="Rectangle" aria-pressed="false">□</button>
+            <button class="tool-button" data-tool="circle" type="button" title="Circle" aria-pressed="false">○</button>
+          </div>
+        </div>
+
+        <div class="tool-group size-group">
+          <p>Size</p>
+          <label>
+            <input id="sizeInput" type="range" min="1" max="60" value="8" />
+            <output id="sizeOutput">8 px</output>
+          </label>
+        </div>
+
+        <div class="tool-group">
+          <p>Colors</p>
+          <div class="color-row" aria-label="Preset colors">
+            <button class="swatch active" data-color="#111827" style="--swatch: #111827" type="button" aria-label="Ink"></button>
+            <button class="swatch" data-color="#e11d48" style="--swatch: #e11d48" type="button" aria-label="Rose"></button>
+            <button class="swatch" data-color="#f59e0b" style="--swatch: #f59e0b" type="button" aria-label="Amber"></button>
+            <button class="swatch" data-color="#16a34a" style="--swatch: #16a34a" type="button" aria-label="Green"></button>
+            <button class="swatch" data-color="#0ea5e9" style="--swatch: #0ea5e9" type="button" aria-label="Sky"></button>
+            <button class="swatch" data-color="#7c3aed" style="--swatch: #7c3aed" type="button" aria-label="Violet"></button>
+            <input id="colorInput" type="color" value="#111827" aria-label="Custom color" />
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <p>Canvas</p>
+          <div class="command-row">
+            <button class="command-button" id="fillBtn" type="button">Fill</button>
+            <button class="command-button danger" id="clearBtn" type="button">Clear</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="canvas-wrap">
+          <canvas id="paintCanvas" width="1280" height="780" aria-label="Drawing canvas"></canvas>
+        </div>
+      </section>
+
+      <footer class="statusbar" aria-label="Canvas status">
+        <div>
+          <span class="status-label">Tool</span>
+          <strong id="toolStatus">Pencil</strong>
+        </div>
+        <div>
+          <span class="status-label">Brush</span>
+          <strong id="sizeStatus">8 px</strong>
+        </div>
+        <div class="status-hint">Undo with ⌘Z or Ctrl+Z</div>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
